@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+langchain-core
+langchain-openai
+google-generativeai
+anthropic
+pdfplumber
+pypdf
+python-docx
+httpx
+websockets
+supabase
+python-dotenv
+python-multipart
