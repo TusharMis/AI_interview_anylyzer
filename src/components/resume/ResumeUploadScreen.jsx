@@ -27,12 +27,31 @@ export function ResumeUploadScreen({ setActiveTab }) {
     ]
   });
 
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      validateAndProcessFile(file);
+      e.target.value = ''; // Reset input so same file can be re-selected if needed
+    }
+  };
+
   const handleFileDrop = (e) => {
     e.preventDefault();
     const files = e.dataTransfer ? e.dataTransfer.files : e.target.files;
     if (files && files[0]) {
       validateAndProcessFile(files[0]);
     }
+  };
+
+  const readTextFromFile = (file) => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        resolve(event.target.result || '');
+      };
+      reader.onerror = () => resolve('');
+      reader.readAsText(file);
+    });
   };
 
   const validateAndProcessFile = async (file) => {
@@ -57,7 +76,16 @@ export function ResumeUploadScreen({ setActiveTab }) {
       : '1.80 MB';
 
     setSelectedFile(file);
-    setUploading(true, 35);
+    setUploading(true, 30);
+
+    // Read local file text
+    const rawText = await readTextFromFile(file);
+
+    // Dynamic skill extraction from raw text if present
+    const knownSkills = ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Node.js', 'Python', 'FastAPI', 'PostgreSQL', 'Docker', 'Kubernetes', 'AWS', 'Tailwind CSS', 'GraphQL', 'Express', 'MongoDB'];
+    const extractedSkills = knownSkills.filter(skill => 
+      rawText.toLowerCase().includes(skill.toLowerCase())
+    );
 
     try {
       const backendUrl = import.meta.env.VITE_BACKEND_API_URL || 'https://ai-interview-anylyzer-1.onrender.com';
@@ -89,7 +117,7 @@ export function ResumeUploadScreen({ setActiveTab }) {
           setAtsReport({
             ats_score: atsData.ats_score || 94.5,
             keyword_match_percentage: atsData.keyword_match_percentage || 92.0,
-            strong_skills: atsData.strong_skills || ['React 19', 'Next.js 15', 'TypeScript', 'FastAPI', 'PostgreSQL'],
+            strong_skills: atsData.strong_skills || (extractedSkills.length > 0 ? extractedSkills : ['React 19', 'Next.js 15', 'TypeScript', 'FastAPI', 'PostgreSQL']),
             missing_skills: atsData.missing_skills || ['Kubernetes', 'GraphQL'],
             weak_skills: atsData.weak_skills || ['Legacy PHP', 'SOAP APIs'],
             summary: atsData.summary || 'Candidate demonstrates strong full-stack skills.',
@@ -104,7 +132,7 @@ export function ResumeUploadScreen({ setActiveTab }) {
           fileName: file.name,
           fileSize: calculatedSize,
           uploadDate: new Date().toISOString().split('T')[0],
-          parsedSkills: parsed.skills || ['React 19', 'Next.js 15', 'TypeScript', 'FastAPI', 'PostgreSQL', 'Docker', 'Python', 'Tailwind CSS'],
+          parsedSkills: parsed.skills || (extractedSkills.length > 0 ? extractedSkills : ['React 19', 'Next.js 15', 'TypeScript', 'FastAPI', 'PostgreSQL']),
           name: parsed.name || 'Alex Rivera',
           email: parsed.email || 'alex.rivera@example.com',
           phone: parsed.phone || '+1 (555) 234-5678',
@@ -125,7 +153,7 @@ export function ResumeUploadScreen({ setActiveTab }) {
         fileName: file.name,
         fileSize: calculatedSize,
         uploadDate: new Date().toISOString().split('T')[0],
-        parsedSkills: ['React 19', 'Next.js 15', 'TypeScript', 'FastAPI', 'PostgreSQL', 'Docker', 'Python', 'Tailwind CSS', 'AWS'],
+        parsedSkills: extractedSkills.length > 0 ? extractedSkills : ['React 19', 'Next.js 15', 'TypeScript', 'FastAPI', 'PostgreSQL', 'Docker', 'Python', 'Tailwind CSS', 'AWS'],
         name: 'Alex Rivera',
         email: 'alex.rivera@example.com',
         phone: '+1 (555) 234-5678',
@@ -134,13 +162,17 @@ export function ResumeUploadScreen({ setActiveTab }) {
         portfolio: 'https://alexrivera.dev'
       });
       addToast('PDF/DOCX Resume parsed and ATS score generated successfully!', 'success');
-    }, 1000);
+    }, 800);
   };
 
   const handleRemoveFile = () => {
     setSelectedFile(null);
     useResumeStore.setState({ activeResume: null });
     addToast('Resume removed', 'info');
+  };
+
+  const triggerFileInput = () => {
+    document.getElementById('resume-file-input')?.click();
   };
 
   return (
@@ -155,9 +187,10 @@ export function ResumeUploadScreen({ setActiveTab }) {
 
       {/* File Drop Area */}
       <div
+        onClick={triggerFileInput}
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleFileDrop}
-        className="glass-panel p-8 rounded-3xl border-2 border-dashed border-slate-700 hover:border-cyan-500/60 transition-all text-center space-y-4 cursor-pointer bg-slate-900/60"
+        className="glass-panel p-8 rounded-3xl border-2 border-dashed border-slate-700 hover:border-cyan-500/60 transition-all text-center space-y-4 cursor-pointer bg-slate-900/60 hover:bg-slate-900/80"
       >
         <div className="p-4 w-16 h-16 mx-auto rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center">
           <UploadCloud className="w-8 h-8" />
@@ -173,14 +206,14 @@ export function ResumeUploadScreen({ setActiveTab }) {
           accept=".pdf,.docx"
           id="resume-file-input"
           className="hidden"
-          onChange={handleFileDrop}
+          onChange={handleFileChange}
         />
 
-        <label htmlFor="resume-file-input" className="inline-block">
-          <Button variant="outline" size="sm" icon={UploadCloud}>
+        <div>
+          <Button variant="outline" size="sm" icon={UploadCloud} onClick={(e) => { e.stopPropagation(); triggerFileInput(); }}>
             Browse Local File
           </Button>
-        </label>
+        </div>
       </div>
 
       {/* Upload Meter */}

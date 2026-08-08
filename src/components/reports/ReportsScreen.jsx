@@ -51,6 +51,58 @@ export function ReportsScreen({ setActiveTab }) {
     { subject: 'Grammar', A: report.grammar, fullMark: 100 }
   ];
 
+  const handleDownloadReport = () => {
+    const reportContent = `
+================================================================================
+                    INTERVIEW AI - CANDIDATE DIAGNOSTIC REPORT
+================================================================================
+Candidate Name: Alex Rivera
+Evaluation Date: ${new Date().toLocaleDateString()}
+Track Type: ${interviewType || 'Technical'} Engineering Track
+Recommendation: STRONG HIRE
+
+--------------------------------------------------------------------------------
+1. EXECUTIVE SUMMARY & OVERALL SCORE
+--------------------------------------------------------------------------------
+Overall Performance Score: ${report.overall_score}%
+
+Competency Breakdown:
+• System Architecture & Technical Depth : ${report.technical}%
+• Verbal & Written Communication        : ${report.communication}%
+• Delivery Confidence & Presence        : ${report.confidence}%
+• Grammar & Diction Precision           : ${report.grammar}%
+
+--------------------------------------------------------------------------------
+2. IDENTIFIED KEY STRENGTHS
+--------------------------------------------------------------------------------
+${report.strengths.map((str, idx) => `[✓] ${idx + 1}. ${str}`).join('\n')}
+
+--------------------------------------------------------------------------------
+3. AREAS FOR GROWTH & DEVELOPMENT
+--------------------------------------------------------------------------------
+${report.weaknesses.map((wk, idx) => `[!] ${idx + 1}. ${wk}`).join('\n')}
+
+--------------------------------------------------------------------------------
+4. ACTIONABLE RECOMMENDATIONS & NEXT STEPS
+--------------------------------------------------------------------------------
+${report.recommendations.map((rec, idx) => `[→] ${idx + 1}. ${rec}`).join('\n')}
+
+================================================================================
+Generated automatically by InterviewAI Engine
+================================================================================
+`;
+
+    const blob = new Blob([reportContent.trim()], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `InterviewAI_Diagnostic_Report_${new Date().toISOString().split('T')[0]}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="max-w-6xl mx-auto space-y-8 py-6">
       {/* Header Banner */}
@@ -65,7 +117,7 @@ export function ReportsScreen({ setActiveTab }) {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="outline" size="sm" icon={Download}>
+          <Button variant="outline" size="sm" icon={Download} onClick={handleDownloadReport}>
             Export Diagnostic PDF
           </Button>
           <Button size="sm" icon={Sparkles} onClick={() => setActiveTab('dashboard')}>
