@@ -3,6 +3,7 @@ import { create } from 'zustand';
 export const useResumeStore = create((set) => ({
   activeResume: {
     fileName: 'Alex_Rivera_Senior_FullStack_Resume.pdf',
+    fileSize: '1.80 MB',
     uploadDate: '2026-08-05',
     parsedSkills: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Python', 'FastAPI', 'PostgreSQL', 'Docker', 'AWS', 'Tailwind CSS'],
     summary: 'Senior Full Stack Engineer with 6+ years experience engineering microservices, high-throughput cloud architectures, and interactive WebGL/React applications.',
