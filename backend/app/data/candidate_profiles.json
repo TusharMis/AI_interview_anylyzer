@@ -1,0 +1,63 @@
+[
+  {
+    "candidate_id": "cand_01",
+    "name": "Alex Rivera",
+    "target_role": "Senior AI Systems Engineer",
+    "experience_level": "Senior (5+ yrs)",
+    "completed_days": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+    "skipped_topics": [],
+    "confidence_signals": {
+      "Prompt Engineering": "High",
+      "RAG & Vector DBs": "Very High",
+      "Agentic AI": "High",
+      "MCP Protocols": "Medium-High",
+      "Production Systems": "High"
+    },
+    "key_missions_completed": [
+      "Built multi-tenant Hybrid Search pipeline with Qdrant and Cohere Rerank",
+      "Created Custom MCP Server for SQL database context injection",
+      "Engineered LangGraph multi-agent customer support router",
+      "Deployed observability dashboard with LangSmith and FastAPI WebSockets"
+    ]
+  },
+  {
+    "candidate_id": "cand_02",
+    "name": "Priya Sharma",
+    "target_role": "RAG Specialist & AI Architect",
+    "experience_level": "Mid-Level (3-5 yrs)",
+    "completed_days": [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 20, 21, 22, 26, 28, 30],
+    "skipped_topics": [5, 15, 16, 17, 18, 19, 23, 24, 25, 27, 29],
+    "confidence_signals": {
+      "Prompt Engineering": "High",
+      "RAG & Vector DBs": "Very High",
+      "Agentic AI": "Medium",
+      "MCP Protocols": "Medium",
+      "Production Systems": "Medium"
+    },
+    "key_missions_completed": [
+      "Implemented HyDE and Query Transformation for financial RAG engine",
+      "Evaluated RAG answer relevance using Ragas framework",
+      "Constructed fast stdio MCP server for file parsing"
+    ]
+  },
+  {
+    "candidate_id": "cand_03",
+    "name": "David Chen",
+    "target_role": "Agentic AI Developer",
+    "experience_level": "Mid-Level (3-5 yrs)",
+    "completed_days": [1, 2, 4, 5, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 26, 27, 30, 31],
+    "skipped_topics": [3, 6, 7, 8, 9, 10, 11, 12, 22, 25, 28, 29],
+    "confidence_signals": {
+      "Prompt Engineering": "High",
+      "RAG & Vector DBs": "Low-Medium",
+      "Agentic AI": "Very High",
+      "MCP Protocols": "High",
+      "Production Systems": "Medium-High"
+    },
+    "key_missions_completed": [
+      "Built ReAct agent loop with Playwright browser sandbox tool",
+      "Designed Human-in-the-Loop breakpoint state persistence using LangGraph",
+      "Integrated MCP client tools into Claude Desktop workflow"
+    ]
+  }
+]

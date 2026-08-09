@@ -1,0 +1,227 @@
+{
+  "program_name": "31-Day Enterprise AI Engineering Cohort",
+  "total_days": 31,
+  "modules": [
+    {
+      "module_id": "m1",
+      "module_title": "Module 1: Prompt Engineering & LLM Fundamentals",
+      "days_range": "Days 1 - 5",
+      "days": [
+        {
+          "day": 1,
+          "topic": "LLM Architecture & Tokenization",
+          "learning_objectives": ["Understand BPE tokenization", "Analyze context window constraints", "Estimate API token costs"],
+          "tools": ["Tiktoken", "OpenAI API"]
+        },
+        {
+          "day": 2,
+          "topic": "System Prompts & Persona Design",
+          "learning_objectives": ["Craft system instructions", "Enforce output tone and role constraints", "Prevent prompt injection"],
+          "tools": ["LangChain Core", "OpenAI Playground"]
+        },
+        {
+          "day": 3,
+          "topic": "Few-Shot In-Context Learning",
+          "learning_objectives": ["Select optimal few-shot examples", "Implement dynamic example selectors", "Evaluate instruction adherence"],
+          "tools": ["LangChain ExampleSelectors"]
+        },
+        {
+          "day": 4,
+          "topic": "Structured Outputs & JSON Mode",
+          "learning_objectives": ["Enforce strict JSON schema responses", "Use Pydantic for response validation", "Handle JSON parsing errors"],
+          "tools": ["Pydantic", "Instructor", "FastAPI"]
+        },
+        {
+          "day": 5,
+          "topic": "Prompt Chaining & Workflow Automation",
+          "learning_objectives": ["Decompose complex tasks into sequential prompts", "Pass state between chain steps", "Error handling in chains"],
+          "tools": ["LangChain LCEL", "LangGraph"]
+        }
+      ]
+    },
+    {
+      "module_id": "m2",
+      "module_title": "Module 2: RAG & Vector Databases",
+      "days_range": "Days 6 - 12",
+      "days": [
+        {
+          "day": 6,
+          "topic": "Document Parsing & Text Chunking Strategies",
+          "learning_objectives": ["Compare fixed vs semantic chunking", "Handle PDF table extraction", "Optimize chunk overlap"],
+          "tools": ["pdfplumber", "LangChain TextSplitters"]
+        },
+        {
+          "day": 7,
+          "topic": "Embedding Models & Vector Spaces",
+          "learning_objectives": ["Understand dense vector embeddings", "Evaluate cosine similarity vs dot product", "Compare text-embedding-3 vs BGE"],
+          "tools": ["OpenAI Embeddings", "HuggingFace Transformers"]
+        },
+        {
+          "day": 8,
+          "topic": "Vector Database Indexing & HNSW",
+          "learning_objectives": ["Configure HNSW index parameters", "Manage namespaces & payload filtering", "Build scalable vector search"],
+          "tools": ["Pinecone", "Qdrant", "ChromaDB"]
+        },
+        {
+          "day": 9,
+          "topic": "Hybrid Search & BM25 Keyword Retrieval",
+          "learning_objectives": ["Combine sparse keyword search with dense vector search", "Tune alpha weighting parameters", "Benchmark recall metrics"],
+          "tools": ["Qdrant Hybrid", "Rank-BM25"]
+        },
+        {
+          "day": 10,
+          "topic": "Re-Ranking & Cross-Encoders",
+          "learning_objectives": ["Implement Cohere Rerank", "Improve retrieval precision@k", "Measure latency trade-offs"],
+          "tools": ["Cohere Rerank API", "SentenceTransformers"]
+        },
+        {
+          "day": 11,
+          "topic": "Query Transformation & Hypothetical Document Embeddings (HyDE)",
+          "learning_objectives": ["Generate synthetic documents for retrieval", "Multi-query decomposition", "Query rewriting"],
+          "tools": ["LangChain Query Transformers"]
+        },
+        {
+          "day": 12,
+          "topic": "Context Compression & RAG Evaluation",
+          "learning_objectives": ["Compress retrieved context to fit token windows", "Evaluate RAG using Ragas metrics", "Measure Faithfulness & Answer Relevance"],
+          "tools": ["Ragas", "TruLens"]
+        }
+      ]
+    },
+    {
+      "module_id": "m3",
+      "module_title": "Module 3: Agentic AI & Tool Calling",
+      "days_range": "Days 13 - 19",
+      "days": [
+        {
+          "day": 13,
+          "topic": "ReAct Framework & Agent Loops",
+          "learning_objectives": ["Implement Thought-Action-Observation loops", "Handle max iteration limits", "Debug agent reasoning traces"],
+          "tools": ["LangChain Agents", "AutoGPT Architecture"]
+        },
+        {
+          "day": 14,
+          "topic": "Function Calling & OpenAPI Schemas",
+          "learning_objectives": ["Bind native tools to LLMs", "Format JSON schema tool definitions", "Validate tool arguments"],
+          "tools": ["OpenAI Function Calling", "Anthropic Tool Use"]
+        },
+        {
+          "day": 15,
+          "topic": "Custom Agent Tool Engineering",
+          "learning_objectives": ["Build custom web scraping & database tools", "Implement tool execution sandboxes", "Handle tool failure gracefully"],
+          "tools": ["Python Exec Sandbox", "Playwright"]
+        },
+        {
+          "day": 16,
+          "topic": "Stateful Multi-Agent Orchestration",
+          "learning_objectives": ["Build multi-agent state graphs", "Route execution between specialist agents", "Manage shared agent state"],
+          "tools": ["LangGraph", "CrewAI"]
+        },
+        {
+          "day": 17,
+          "topic": "Plan-and-Execute Agent Architectures",
+          "learning_objectives": ["Separate high-level planning from step execution", "Dynamically replan upon failure", "Optimize agent token usage"],
+          "tools": ["LangChain PlanAndExecute"]
+        },
+        {
+          "day": 18,
+          "topic": "Human-in-the-Loop Approval Workflows",
+          "learning_objectives": ["Pause agent execution for user approval", "Implement breakpoint state persistence", "Build interactive agent UIs"],
+          "tools": ["LangGraph Checkpoints", "FastAPI WebSockets"]
+        },
+        {
+          "day": 19,
+          "topic": "Agent Memory (Short-Term vs Long-Term)",
+          "learning_objectives": ["Manage sliding window conversation memory", "Store long-term user memories in Vector DB", "Entity memory extraction"],
+          "tools": ["Mem0", "Zustand", "Redis"]
+        }
+      ]
+    },
+    {
+      "module_id": "m4",
+      "module_title": "Module 4: Model Context Protocol (MCP)",
+      "days_range": "Days 20 - 25",
+      "days": [
+        {
+          "day": 20,
+          "topic": "MCP Architecture & Protocol Overview",
+          "learning_objectives": ["Understand Client-Server-Host architecture", "Analyze JSON-RPC 2.0 transport protocol", "Standardize AI context connections"],
+          "tools": ["MCP SDK", "TypeScript / Python MCP"]
+        },
+        {
+          "day": 21,
+          "topic": "Building Custom MCP Servers",
+          "learning_objectives": ["Expose local resources, prompts, and tools via MCP", "Implement stdio & SSE transports", "Handle server lifecycle"],
+          "tools": ["FastMCP", "MCP Inspector"]
+        },
+        {
+          "day": 22,
+          "topic": "MCP Resources & Dynamic Context Injection",
+          "learning_objectives": ["Expose file systems, APIs, and databases as MCP resources", "Subscribe to dynamic resource updates", "Optimize context retrieval"],
+          "tools": ["MCP Resources API"]
+        },
+        {
+          "day": 23,
+          "topic": "MCP Tools & Prompt Templates",
+          "learning_objectives": ["Define standardized prompt templates in MCP", "Expose executable tools across clients", "Build modular MCP integrations"],
+          "tools": ["MCP Prompts & Tools"]
+        },
+        {
+          "day": 24,
+          "topic": "MCP Client Integration with Claude & IDEs",
+          "learning_objectives": ["Connect MCP servers to Claude Desktop and VS Code", "Configure mcpServers JSON configs", "Debug protocol connections"],
+          "tools": ["Claude Desktop", "Antigravity IDE"]
+        },
+        {
+          "day": 25,
+          "topic": "Enterprise MCP Security & Access Control",
+          "learning_objectives": ["Implement OAuth2 & API key auth for MCP", "Sandboxing MCP server access", "Audit MCP tool execution logs"],
+          "tools": ["OAuth2", "Docker Sandboxes"]
+        }
+      ]
+    },
+    {
+      "module_id": "m5",
+      "module_title": "Module 5: AI Deployment, Evaluation & Production Systems",
+      "days_range": "Days 26 - 31",
+      "days": [
+        {
+          "day": 26,
+          "topic": "Production AI Observability & Tracing",
+          "learning_objectives": ["Trace multi-turn LLM calls & tool executions", "Monitor latency, token usage, and cost per request", "Build LLM telemetry dashboards"],
+          "tools": ["LangSmith", "Arize Phoenix", "OpenTelemetry"]
+        },
+        {
+          "day": 27,
+          "topic": "LLM Guardrails & Safety Engineering",
+          "learning_objectives": ["Detect PII leaks and malicious jailbreaks", "Enforce input/output topic safety", "Implement deterministic output filtering"],
+          "tools": ["NeMo Guardrails", "Llama Guard"]
+        },
+        {
+          "day": 28,
+          "topic": "Systematic LLM Benchmarking & Evaluation Pipelines",
+          "learning_objectives": ["Create synthetic evaluation datasets", "Build LLM-as-a-Judge test suites", "Measure pass@k and win rates"],
+          "tools": ["Promptfoo", "Ragas"]
+        },
+        {
+          "day": 29,
+          "topic": "LLM Caching & Semantic Router Optimization",
+          "learning_objectives": ["Implement exact & semantic response caching", "Route queries based on intent & complexity", "Reduce API latency by 70%"],
+          "tools": ["GPTCache", "Semantic Router"]
+        },
+        {
+          "day": 30,
+          "topic": "Production Microservices & Streaming WebSockets",
+          "learning_objectives": ["Deploy high-concurrency FastAPI streaming endpoints", "Manage Server-Sent Events (SSE) & WebSockets", "Deploy on Render & Docker"],
+          "tools": ["FastAPI", "Uvicorn", "Docker", "WebSockets"]
+        },
+        {
+          "day": 31,
+          "topic": "Enterprise AI Architecture Capstone Defense",
+          "learning_objectives": ["Present end-to-end AI system architecture", "Defend engineering trade-offs and cost estimates", "Demonstrate production readiness"],
+          "tools": ["Full Stack AI Agent System"]
+        }
+      ]
+    }
+  ]
+}
